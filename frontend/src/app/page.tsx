@@ -6,107 +6,105 @@ import { MdDashboard, MdForklift } from "react-icons/md";
 
 export default function Home() {
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-screen flex flex-col bg-gray-50">
       <div className="flex-1 flex">
-        <aside className="w-64 p-6 bg-white/40">
+        <aside className="w-64 p-6 bg-white shadow-md">
           <Image src={"/image/logo.png"} className="w-full" alt="Logo" width={240} height={240} />
           <nav className="space-y-4 flex flex-col mt-8">
-            <a href="" className="flex items-center gap-4 hover:font-semibold">
-              <MdDashboard />
+            <a href="" className="flex items-center gap-4 text-gray-700 hover:bg-gray-200 p-2 rounded-lg">
+              <MdDashboard size={24} />
               Dashboard
             </a>
-            <a href="" className="flex items-center gap-4 hover:font-semibold">
-              <FaBuilding />
+            <a href="" className="flex items-center gap-4 text-gray-700 hover:bg-gray-200 p-2 rounded-lg">
+              <FaBuilding size={24} />
               Ambientes
             </a>
-            <a href="" className="flex items-center gap-4 hover:font-semibold">
-              <MdForklift />
+            <a href="" className="flex items-center gap-4 text-gray-700 hover:bg-gray-200 p-2 rounded-lg">
+              <MdForklift size={24} />
               Equipamentos
             </a>
-            <a href="" className="flex items-center gap-4 hover:font-semibold">
-              <FaTools />
+            <a href="" className="flex items-center gap-4 text-gray-700 hover:bg-gray-200 p-2 rounded-lg">
+              <FaTools size={24} />
               Manutenções
             </a>
-            <a href="" className="flex items-center gap-4 hover:font-semibold">
-              <FaUsers />
+            <a href="" className="flex items-center gap-4 text-gray-700 hover:bg-gray-200 p-2 rounded-lg">
+              <FaUsers size={24} />
               Usuário
             </a>
           </nav>
         </aside>
 
-        <main className="flex-1 flex flex-col">
-          <h1 className="text-4xl font-bold uppercase w-full bg-white/40 p-6 text-center">
+        <main className="flex-1 flex flex-col p-6">
+          <h1 className="text-4xl font-bold uppercase text-gray-800 mb-6 bg-white shadow-md p-4 rounded-lg text-center">
             Sistema de Gestão de Manutenção
           </h1>
 
-          <div>
-            <div className="grid grid-cols-4 gap-4 p-6">
-              <div className="bg-orange-200 p-6 flex gap-2 rounded-xl">
-                <div className="flex-1 flex flex-col">
-                  <strong className="text-3xl font-bold">200</strong>
-                  <span className="text-sm text-zinc-500">Ambientes</span>
-                </div>
-                <FaBuilding size={48} />
+          <div className="grid grid-cols-4 gap-6 mb-6">
+            <div className="bg-orange-100 p-6 flex gap-4 rounded-lg shadow-md">
+              <div className="flex-1 flex flex-col">
+                <strong className="text-3xl font-bold text-gray-800">200</strong>
+                <span className="text-sm text-gray-500">Ambientes</span>
               </div>
-
-              <div className="bg-blue-200 p-6 flex gap-2 rounded-xl">
-                <div className="flex-1 flex flex-col">
-                  <strong className="text-3xl font-bold">200</strong>
-                  <span className="text-sm text-zinc-500">Equipamentos</span>
-                </div>
-                <MdForklift size={48} />
-              </div>
-
-              <div className="bg-red-200 p-6 flex gap-2 rounded-xl">
-                <div className="flex-1 flex flex-col">
-                  <strong className="text-3xl font-bold">200</strong>
-                  <span className="text-sm text-zinc-500">O.S. Abertas</span>
-                </div>
-                <GrNotes size={48} />
-              </div>
-
-              <div className="bg-green-200 p-6 flex gap-2 rounded-xl">
-                <div className="flex-1 flex flex-col">
-                  <strong className="text-3xl font-bold">200</strong>
-                  <span className="text-sm text-zinc-500">O.S. Concluídas</span>
-                </div>
-                <IoMdCheckboxOutline size={48} />
-              </div>
+              <FaBuilding size={48} className="text-orange-600" />
             </div>
-            
-            <div className="p-6">
-              <h2 className="text-2xl font-bold mb-4">Tabela de Dados</h2>
-              <table className="w-full table-auto border-collapse border border-gray-300">
+
+            <div className="bg-blue-100 p-6 flex gap-4 rounded-lg shadow-md">
+              <div className="flex-1 flex flex-col">
+                <strong className="text-3xl font-bold text-gray-800">200</strong>
+                <span className="text-sm text-gray-500">Equipamentos</span>
+              </div>
+              <MdForklift size={48} className="text-blue-600" />
+            </div>
+
+            <div className="bg-red-100 p-6 flex gap-4 rounded-lg shadow-md">
+              <div className="flex-1 flex flex-col">
+                <strong className="text-3xl font-bold text-gray-800">200</strong>
+                <span className="text-sm text-gray-500">O.S. Abertas</span>
+              </div>
+              <GrNotes size={48} className="text-red-600" />
+            </div>
+
+            <div className="bg-green-100 p-6 flex gap-4 rounded-lg shadow-md">
+              <div className="flex-1 flex flex-col">
+                <strong className="text-3xl font-bold text-gray-800">200</strong>
+                <span className="text-sm text-gray-500">O.S. Concluídas</span>
+              </div>
+              <IoMdCheckboxOutline size={48} className="text-green-600" />
+            </div>
+          </div>
+          
+          <div className="bg-white shadow-md rounded-lg p-6">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">Tabela de Dados</h2>
+            <div className="overflow-x-auto">
+              <table className="w-full table-auto border-collapse">
                 <thead>
-                  <tr>
-                    <th className="border px-4 py-2">ID</th>
-                    <th className="border px-4 py-2">Nome</th>
-                    <th className="border px-4 py-2">Status</th>
-                    <th className="border px-4 py-2">Data</th>
-                    <th className="border px-4 py-2">CPF</th>
-
-
+                  <tr className="bg-gray-100 text-gray-700">
+                    <th className="border px-4 py-2 text-left">ID</th>
+                    <th className="border px-4 py-2 text-left">Nome</th>
+                    <th className="border px-4 py-2 text-left">Status</th>
+                    <th className="border px-4 py-2 text-left">Data</th>
+                    <th className="border px-4 py-2 text-left">CPF</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr className="bg-white even:bg-gray-50">
                     <td className="border px-4 py-2">1</td>
-                    <td className="border px-4 py-2">Equipamento A</td>
-                    <td className="border px-4 py-2">Operacional</td>
+                    <td className="border px-4 py-2">Equipamento</td>
+                    <td className="border px-4 py-2 text-green-600">Operacional</td>
                     <td className="border px-4 py-2">2024-07-01</td>
                     <td className="border px-4 py-2">312-123-312-41</td>
                   </tr>
-                  <tr>
+                  <tr className="bg-white even:bg-gray-50">
                     <td className="border px-4 py-2">2</td>
-                    <td className="border px-4 py-2">Equipamento B</td>
-                    <td className="border px-4 py-2">Manutenção</td>
+                    <td className="border px-4 py-2">Equipamento</td>
+                    <td className="border px-4 py-2 text-yellow-600">Manutenção</td>
                     <td className="border px-4 py-2">2024-07-10</td>
                     <td className="border px-4 py-2">312-123-312-41</td>
                   </tr>
-                  <tr>
+                  <tr className="bg-white even:bg-gray-50">
                     <td className="border px-4 py-2">3</td>
-                    <td className="border px-4 py-2">Equipamento C</td>
-                    <td className="border px-4 py-2">Inativo</td>
+                    <td className="border px-4 py-2">Equipamento</td>
+                    <td className="border px-4 py-2 text-red-600">Inativo</td>
                     <td className="border px-4 py-2">2024-07-20</td>
                     <td className="border px-4 py-2">312-123-312-41</td>
                   </tr>
@@ -116,7 +114,7 @@ export default function Home() {
           </div>
         </main>
       </div>
-      <footer className="p-6 bg-white/40 text-center text-red-900 text-sm">
+      <footer className="p-6 bg-white shadow-md text-center text-gray-600 text-sm">
         Todos os direitos reservados &copy; 2024
       </footer>
     </div>
