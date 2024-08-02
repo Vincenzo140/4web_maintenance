@@ -1,4 +1,4 @@
-import { FaBuilding, FaTools, FaUsers } from "react-icons/fa";
+import { FaBuilding, FaTools, FaUsers, FaInfoCircle } from "react-icons/fa";
 import { MdDashboard, MdForklift } from "react-icons/md";
 
 export function NavBar() {
@@ -8,6 +8,7 @@ export function NavBar() {
         {target: "#", text: "Equipamentos", icon: <MdForklift />},
         {target: "#", text: "Manutenções", icon: <FaTools />},
         {target: "#", text: "Usuários", icon: <FaUsers />},
+        {target: "#", text: "Sobre", icon: <FaInfoCircle />}, 
     ];
 
     return (
