@@ -1,17 +1,10 @@
-"use client"; 
+"use client";
 
-
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
+import { useRouter } from "next/navigation"; // Certifique-se de que isso está correto
 import { useState } from "react";
 
 // Componente de carregamento
@@ -23,16 +16,18 @@ const LoadingSpinner = () => (
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter(); // Hook useRouter para navegação
 
-  const handleLogin = (event: React.FormEvent) => {
+  const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
     setIsLoading(true);
 
-    // Simula um atraso no carregamento
+    // Simulação de uma requisição de login
+    // Normalmente, você faria uma chamada para um API aqui
     setTimeout(() => {
       setIsLoading(false);
-      // Aqui você pode redirecionar ou lidar com o login
-    }, 2000); // 2 segundos para simulação
+      router.push('/dashboard'); // Navegar para a página de dashboard após o login
+    }, 2000);
   };
 
   return (
@@ -51,18 +46,17 @@ export default function Home() {
                 <Input id="password" type="password" required />
               </div>
             </div>
+            <CardFooter className="flex justify-center">
+              <button 
+                type="submit" 
+                className={buttonVariants({ variant: "default" })} 
+              >
+                {isLoading ? "Entrando..." : "Entrar"}
+              </button>
+            </CardFooter>
           </form>
           {isLoading && <LoadingSpinner />}
         </CardContent>
-        <CardFooter className="flex justify-center">
-          <button 
-            type="submit" 
-            className={buttonVariants({ variant: "default" })} 
-            onClick={() => setIsLoading(true)}
-          >
-            {isLoading ? "Entrando..." : "Entrar"}
-          </button>
-        </CardFooter>
       </Card>
     </div>
   );
