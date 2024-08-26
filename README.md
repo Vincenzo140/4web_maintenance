@@ -1,183 +1,398 @@
 # PRD - Product Requirements Document (Template)
 
-## *Introdução & Objetivo*
+## Introdução & Objetivo
 
-Esta documentação descreve o desenvolvimento de um Sistema de Gerenciamento de Manutenção (SGM) para uma empresa industrial que fabrica peças automotivas. O objetivo principal é criar uma aplicação web que otimize os processos de manutenção, melhorando a organização, a comunicação e a eficiência dentro da empresa. O SGM permitirá o cadastro de máquinas, gerenciamento de manutenções, controle de estoque de peças e gerenciamento de equipes, diferenciando-se dos sistemas manuais atuais pela sua automação e capacidade de gerar relatórios detalhados.
+O sistema é uma aplicação web que visa melhorar o gerenciamento de manutenção e o controle de estoque de peças de reposição para o cliente. Com uma plataforma integrada, o sistema permite o cadastro e acompanhamento das máquinas e solicitações de manutenção, além de um controle preciso do estoque de peças. A solução centraliza todas as informações necessárias, eliminando a necessidade de sistemas múltiplos ou planilhas dispersas, e facilita o gerenciamento de maneira eficiente e intuitiva.
+Este sistema se destaca pela sua capacidade de integrar funcionalidades de agendamento, monitoramento e documentação, com abordagem orientada para o usuário. A visão é oferecer uma solução completa que gere valor ao proporcionar eficiência e transparência no gerenciamento.
 
-## *Por que implementar isto?*
 
-A implementação do SGM é motivada pela necessidade de resolver problemas críticos no processo atual de gerenciamento de manutenção, como falta de organização, comunicação ineficiente e perda de tempo e produtividade. As razões estratégicas incluem:
 
-- **Motivação Pessoal e Visão:** Melhorar a eficiência operacional e a segurança dos colaboradores.
-- **Evidências de Sucesso Inicial:** Empresas que adotam sistemas automatizados de gerenciamento de manutenção relatam melhorias significativas na produtividade.
-- **Oportunidades de Mercado:** A indústria automotiva está em constante evolução, e a automação de processos é uma tendência crescente.
-- **Oportunidades de Monetização:** Redução de custos operacionais e aumento da produtividade.
+## Por que implementar isto?
+A implementação do Sistema é justificada pela necessidade de melhorar a eficiência e a produtividade da empresa, automatizando os processos de manutenção que atualmente são realizados manualmente. Empresas que utilizam sistemas automatizados de gerenciamento de manutenção têm relatado melhorias significativas na organização e na redução de custos. 
+Além disso, existe uma demanda crescente por soluções de gerenciamento de manutenção no mercado industrial, apresentando uma oportunidade estratégica. 
 
+## Público alvo
+Identificar os principais grupos de usuários ajudará a personalizar o desenvolvimento e melhorar a experiência geral.
+
+| Perfil de usuário       	| Descrição, necessidades e interesses.                    	|
+|------------------------------|---------------------------------------------------------------|
+| Gerentes de Manutenção | Precisam de uma visão geral sobre as solicitações e manutenção das máquinas, através da visualização dos relatórios. |
+| Supervisor de Manutenção| Verifica as necessidades de manutenção e gera as ordens de serviços alimentando o sistema. Também tem controle sobre o estoque de peças e ferramentas usados na manutenção|
+| Técnicos de Manutenção| Necessitam registrar e acompanhar o status das solicitações e o controle de peças. |
+|Assistentes de Almoxarifado| Usarão as funcionalidades de entrada e saída de peças e ferramentas de acordo com as ordens de serviços. |
+
+## Personas
+
+1. **Carlos, o Gerente de Manutenção**
+   - **Descrição:** Carlos é o gerente de manutenção da empresa, responsável por supervisionar todas as operações de manutenção. Ele precisa de uma visão geral detalhada sobre as solicitações e o status das manutenções das máquinas.
+   - **Objetivos:** Obter relatórios precisos e atualizados sobre o status das manutenções, garantir a eficiência dos processos de manutenção e tomar decisões estratégicas baseadas em dados.
+
+2. **Fernanda, a Supervisora de Manutenção**
+   - **Descrição:** Fernanda é responsável por verificar as necessidades de manutenção, gerar ordens de serviço e alimentar o sistema com as informações necessárias. Ela também tem controle sobre o estoque de peças e ferramentas usadas na manutenção.
+   - **Objetivos:** Garantir que todas as necessidades de manutenção sejam corretamente registradas e atendidas, manter o controle eficiente do estoque e garantir que os recursos estejam disponíveis quando necessários.
+
+3. **João, o Técnico de Manutenção**
+   - **Descrição:** João é um técnico de manutenção que realiza a manutenção das máquinas e precisa registrar e acompanhar o status das solicitações e o controle das peças usadas.
+   - **Objetivos:** Registrar o progresso das manutenções de forma precisa, ter acesso fácil às solicitações e garantir que as peças necessárias estejam disponíveis para realizar o trabalho de forma eficiente.
+
+4. **Ana, a Assistente de Estoque**
+   - **Descrição:** Ana é responsável pelo gerenciamento do estoque de peças e ferramentas, incluindo a entrada e saída de itens conforme as ordens de serviço.
+   - **Objetivos:** Garantir que o estoque esteja sempre atualizado, processar rapidamente as entradas e saídas de peças e ferramentas e manter um registro preciso das quantidades em estoque.
 ---
 
-## ***Público Alvo***
 
-O público-alvo principal do SGM inclui:
 
-| Perfil de Usuário         | Descrição, Necessidades e Interesses                                 |
-|---------------------------|----------------------------------------------------------------------|
-| Gestores de Manutenção    | Precisam de visibilidade completa sobre o status e histórico das manutenções. |
-| Técnicos de Manutenção    | Necessitam de uma ferramenta eficiente para registrar e acompanhar solicitações de manutenção. |
-| Equipes de Suporte        | Precisam gerenciar o estoque de peças e garantir que os materiais estejam disponíveis quando necessário. |
-| Administradores           | Precisam de relatórios detalhados e controle de acesso para diferentes níveis de usuário. |
 
+
+Aqui estão os requisitos funcionais atualizados com os novos itens:
+
+## Requisitos Funcionais
+
+### Cadastro de Máquinas
+1. O sistema deve permitir o cadastro de máquinas com informações detalhadas.
+    1.1. O sistema deve fornecer um formulário de cadastro de máquinas com campos para nome, tipo, modelo, data de fabricação, número de série e localização.
+    1.2. O sistema deve validar as informações inseridas no formulário, garantindo que todos os campos obrigatórios sejam preenchidos e que os dados estejam em um formato válido.
+    1.3. Após o cadastro, as informações da máquina devem ser armazenadas em um banco de dados e associadas a um identificador único.
+
+### Cadastro de Solicitações de Manutenção
+2. O sistema deve permitir o cadastro de solicitações de manutenção com informações detalhadas.
+    2.1. O sistema deve fornecer um formulário de cadastro de solicitações de manutenção com campos para descrição do problema, data da solicitação, prioridade, responsável e status da manutenção.
+    2.2. O formulário deve permitir a seleção de uma máquina cadastrada para associar a solicitação de manutenção.
+    2.3. Após o cadastro, a solicitação de manutenção deve ser armazenada em um banco de dados e associada à máquina selecionada e ao responsável pela manutenção.
+    2.4. O sistema deve permitir a atualização do status da manutenção (pendente, em andamento, concluída, cancelada).
+
+### Controle de Estoque de Peças
+3. O sistema deve permitir o controle de estoque de peças de reposição.
+    3.1. O sistema deve fornecer um formulário de cadastro de peças de reposição com campos para nome, código, fornecedor e quantidade em estoque.
+    3.2. O sistema deve permitir o registro de entrada e saída de peças, com data e quantidade.
+    3.3. O sistema deve atualizar automaticamente o estoque de peças com base nas entradas e saídas registradas.
+    3.4. O sistema deve permitir a visualização do estoque de peças em tempo real, exibindo o nome, código, fornecedor e quantidade em estoque de cada peça.
+
+### Agendamento de Manutenção Preventiva
+4. O sistema deve permitir o agendamento de manutenções preventivas.
+    4.1. O sistema deve permitir o agendamento de manutenções preventivas com base em intervalos de tempo ou uso da máquina.
+    4.2. O sistema deve enviar notificações automáticas para lembrar os responsáveis sobre as manutenções preventivas agendadas.
+    4.3. As manutenções preventivas agendadas devem ser registradas em um calendário integrado ao sistema, permitindo a visualização e o acompanhamento das manutenções.
+    4.4. O sistema deve permitir a reprogramação ou cancelamento de manutenções preventivas, com registro das alterações feitas.
+
+### Gerenciamento de Equipes
+5. O sistema deve permitir o gerenciamento de equipes de manutenção.
+    5.1. O sistema deve permitir o cadastro de equipes de manutenção, com informações sobre os colaboradores e suas especialidades.
+    5.2. O sistema deve permitir a atribuição de equipes às solicitações de manutenção.
+    5.3. O sistema deve permitir o gerenciamento da disponibilidade dos colaboradores.
+
+### Autenticação e Autorização
+6. O sistema deve implementar autenticação e autorização de usuários.
+    6.1. O sistema deve permitir a criação de contas de usuário para diferentes tipos de acesso (administrador, técnico, etc.).
+    6.2. O sistema deve controlar os acessos a diferentes funcionalidades da aplicação web, com base no tipo de usuário.
+### Casos de uso
+# Casos de Uso
+
+## Cadastro de Máquinas
+
+### Caso de Uso 1: Cadastro de Nova Máquina
+**Descrição:** Um usuário com permissão de administrador deseja cadastrar uma nova máquina no sistema.
+
+**Pré-condições:** O usuário deve estar autenticado no sistema e ter permissões de administrador.
+**Fluxo Principal:**
+1. O usuário acessa a seção de cadastro de máquinas.
+2. O sistema exibe um formulário de cadastro com campos para nome, tipo, modelo, data de fabricação, número de série e localização.
+3. O usuário preenche todos os campos obrigatórios e submete o formulário.
+4. O sistema valida as informações inseridas. Se todas estiverem corretas, o sistema armazena as informações no banco de dados e associa um identificador único à máquina.
+5. O sistema exibe uma mensagem de sucesso indicando que a máquina foi cadastrada com sucesso.
+**Fluxo Alternativo:**
+- Se o formulário estiver incompleto ou com informações inválidas, o sistema exibe mensagens de erro indicando os campos que precisam ser corrigidos.
+```mermaid
+flowchart TD
+    A[Usuário acessa a seção de cadastro de máquinas] --> B[Sistema exibe formulário de cadastro]
+    B --> C[Usuário preenche todos os campos obrigatórios e submete o formulário]
+    C --> D[Sistema valida as informações inseridas]
+    D -->|Informações corretas| E[Sistema armazena informações no banco de dados e associa identificador único]
+    D -->|Informações incorretas| F[Sistema exibe mensagem de erro]
+    E --> G[Sistema exibe mensagem de sucesso]
+    F --> B
+
+
+    classDef correct fill:#3a6b5b,stroke:#000,stroke-width:2px;
+    classDef error fill:#b03a2e,stroke:#000,stroke-width:2px;
+
+
+    class E,G correct;
+    class F error;
+```
 ---
 
-## *Personas*
+## Cadastro de Solicitações de Manutenção
 
-1. **João, o Gestor de Manutenção:** João é responsável por garantir que todas as máquinas estejam funcionando corretamente. Seu principal objetivo é minimizar o tempo de inatividade das máquinas e controlar os custos de manutenção.
-2. **Maria, a Técnica de Manutenção:** Maria realiza manutenções preventivas e corretivas nas máquinas. Ela precisa de um sistema que facilite o registro das solicitações e o acompanhamento do status das manutenções.
-3. **Carlos, o Especialista em Estoque:** Carlos gerencia o estoque de peças e materiais. Ele precisa de uma ferramenta que permita registrar entradas e saídas de peças e gerar relatórios de estoque.
+### Caso de Uso 2: Cadastro de Solicitação de Manutenção
+**Descrição:** Um usuário deseja cadastrar uma nova solicitação de manutenção para uma máquina.
 
+**Pré-condições:** O usuário deve estar autenticado no sistema e ter permissão para cadastrar solicitações de manutenção.
+**Fluxo Principal:**
+1. O usuário acessa a seção de solicitações de manutenção.
+2. O sistema exibe um formulário com campos para descrição do problema, data da solicitação, prioridade, responsável e status da manutenção.
+3. O usuário preenche o formulário e seleciona uma máquina já cadastrada.
+4. O usuário submete o formulário.
+5. O sistema armazena a solicitação de manutenção no banco de dados, associando-a à máquina selecionada e ao responsável pela manutenção.
+6. O sistema exibe uma mensagem de sucesso indicando que a solicitação foi cadastrada.
+**Fluxo Alternativo:**
+- Se a máquina selecionada não estiver cadastrada, o sistema exibe uma mensagem de erro solicitando a seleção de uma máquina válida.
+```mermaid
+flowchart TD
+	A[Usuário acessa a seção de solicitações de manutenção] --> B[Sistema exibe formulário de solicitação]
+	B --> C[Usuário preenche o formulário e seleciona uma máquina já cadastrada]
+	C --> D[Usuário submete o formulário]
+	D --> E[Sistema valida a máquina selecionada]
+	E -->|Máquina cadastrada| F[Sistema armazena solicitação no banco de dados e associa à máquina e responsável]
+	E -->|Máquina não cadastrada| G[Sistema exibe mensagem de erro e solicita seleção de uma máquina válida]
+	F --> H[Sistema exibe mensagem de sucesso]
+	G --> B
+
+	classDef success fill:#3a6b5b,stroke:#000,stroke-width:2px;
+	classDef error fill:#b03a2e,stroke:#000,stroke-width:2px;
+
+	class F,H success;
+	class G error;
+```
+---
+## Controle de Estoque de Peças
+
+### Caso de Uso 3: Atualização do Estoque de Peças
+**Descrição:** Um assistente de estoque deseja registrar a entrada de novas peças no estoque.
+
+**Pré-condições:** O usuário deve estar autenticado no sistema e ter permissões para gerenciar o estoque.
+
+**Fluxo Principal:**
+1. O usuário acessa a seção de controle de estoque de peças.
+2. O sistema exibe um formulário para registro de entrada de peças com campos para nome, código, fornecedor, quantidade e data.
+3. O usuário preenche os campos e submete o formulário.
+4. O sistema atualiza automaticamente o estoque com base nas entradas registradas e exibe a nova quantidade em estoque.
+5. O sistema exibe uma mensagem de sucesso confirmando o registro da entrada.
+
+**Fluxo Alternativo:**
+- Se os campos obrigatórios não forem preenchidos corretamente, o sistema exibe mensagens de erro indicando quais campos precisam ser corrigidos.
+```mermaid
+flowchart TD
+	A[Usuário acessa a seção de controle de estoque de peças] --> B[Sistema exibe formulário de registro de entrada]
+	B --> C[Usuário preenche os campos e submete o formulário]
+	C --> D[Sistema valida os campos preenchidos]
+	D -->|Campos preenchidos corretamente| E[Sistema atualiza o estoque e exibe nova quantidade]
+	D -->|Campos obrigatórios não preenchidos| F[Sistema exibe mensagens de erro para correção]
+	E --> G[Sistema exibe mensagem de sucesso]
+	F --> B
+
+	classDef success fill:#3a6b5b,stroke:#000,stroke-width:2px;
+	classDef error fill:#b03a2e,stroke:#000,stroke-width:2px;
+
+	class E,G success;
+	class F error;
+```
 ---
 
-## *Requisitos Funcionais*
+## Agendamento de Manutenção Preventiva
 
-- **Gerenciamento de Máquinas:**
-    - Cadastro de máquinas com detalhes como nome, tipo, modelo, data de fabricação, número de série, localização e histórico de manutenção.
-    - Visualização detalhada de cada máquina, incluindo histórico de manutenções e informações sobre peças e materiais utilizados.
-    - **P1:** Integrar com sensores IoT para monitoramento em tempo real (opcional, conforme necessidade).
+### Caso de Uso 4: Agendamento de Manutenção Preventiva
+**Descrição:** Um usuário deseja agendar uma manutenção preventiva para uma máquina.
 
-- **Gerenciamento de Manutenções:**
-    - Cadastro de solicitações de manutenção, incluindo descrição do problema, data da solicitação, prioridade, responsável e status.
-    - Gerenciamento do status da manutenção (pendente, em andamento, concluída, cancelada) com possibilidade de adicionar comentários e arquivos.
-    - Atribuição de equipes de manutenção às solicitações.
-    - Registro das peças e materiais utilizados, incluindo quantidade e fornecedor.
-    - Geração de relatórios de manutenção por máquina, período e tipo (preventiva, corretiva, etc.).
+**Pré-condições:** O usuário deve estar autenticado no sistema e ter permissões para agendar manutenções preventivas.
 
-- **Controle de Estoque de Peças:**
-    - Cadastro de peças de reposição com informações como nome, código, fornecedor, quantidade em estoque e valor unitário.
-    - Registro de entradas e saídas de peças, com data e quantidade.
-    - Visualização do estoque de peças em tempo real e geração de relatórios.
+**Fluxo Principal:**
+1. O usuário acessa a seção de agendamento de manutenção preventiva.
+2. O sistema exibe um formulário com campos para a máquina, intervalo de tempo ou uso da máquina, e data do próximo agendamento.
+3. O usuário preenche o formulário e submete o agendamento.
+4. O sistema adiciona o agendamento ao calendário integrado e envia notificações automáticas para os responsáveis.
+5. O sistema exibe uma mensagem de sucesso confirmando o agendamento.
 
-- **Gerenciamento de Equipes:**
-    - Cadastro de equipes de manutenção, incluindo informações sobre os colaboradores e suas especialidades.
-    - Atribuição das equipes às solicitações de manutenção.
-    - Gerenciamento da disponibilidade dos colaboradores.
+**Fluxo Alternativo:**
+- Se o intervalo de tempo ou uso da máquina estiver incorreto, o sistema exibe uma mensagem de erro solicitando a correção.
+```mermaid
+flowchart TD
+	A[Usuário acessa a seção de agendamento de manutenção preventiva] --> B[Sistema exibe formulário de agendamento]
+	B --> C[Usuário preenche o formulário e submete o agendamento]
+	C --> D[Sistema valida o intervalo de tempo ou uso da máquina]
+	D -->|Intervalo correto| E[Sistema adiciona o agendamento ao calendário e envia notificações]
+	D -->|Intervalo incorreto| F[Sistema exibe mensagem de erro solicitando correção]
+	E --> G[Sistema exibe mensagem de sucesso]
+	F --> B
 
-- **Autenticação e Autorização:**
-    - Criação de contas de usuário para diferentes níveis de acesso (administrador, técnico, etc.).
-    - Controle de acessos a diferentes funcionalidades da aplicação.
+	classDef success fill:#3a6b5b,stroke:#000,stroke-width:2px;
+	classDef error fill:#b03a2e,stroke:#000,stroke-width:2px;
 
-- **Notificações e Alertas:**
-    - **P2:** Envio de notificações e alertas via e-mail ou SMS para atualizações de status e novas solicitações de manutenção.
-
-- **Integrações:**
-    - **P2:** Integração com sistemas de ERP ou outros sistemas de gestão existentes na empresa (opcional).
-
-- **Relatórios e Análises:**
-    - **P1:** Geração de relatórios detalhados e gráficos sobre o desempenho da manutenção, custo, tempo de inatividade, etc.
-    - **P2:** Análise preditiva de falhas e manutenção preventiva com base em dados históricos.
-
-- **Interface e Usabilidade:**
-    - **P1:** Interface amigável com design responsivo para uso em diferentes dispositivos.
-    - **P2:** Personalização da interface para diferentes perfis de usuário.
-
-**P1** = **Crítico | P2 = Importante | P3 = Bom ter**
-
-### *Casos de Uso*
-
-> **Caso de Uso 1:** João, o gestor de manutenção, acessa o sistema para visualizar o histórico de manutenção de uma máquina específica e gerar um relatório para a diretoria.
->
-> **Caso de Uso 2:** Maria, a técnica de manutenção, registra uma nova solicitação de manutenção após identificar um problema durante uma inspeção de rotina.
->
-> **Caso de Uso 3:** Carlos, o especialista em estoque, registra a entrada de novas peças e atualiza o estoque no sistema.
-
+	class E,G success;
+	class F error;
+```
 ---
 
-## *Requisitos Não Funcionais*
+## Logging e Observabilidade
 
-1. **NF1:** **Desempenho:** O sistema deve suportar até 1000 usuários simultâneos sem degradação significativa na performance. **P1**
-2. **NF2:** **Segurança:** Implementar autenticação multifator (MFA) e criptografia de dados sensíveis. **P1**
-3. **NF3:** **Usabilidade:** Interface deve ser intuitiva, com treinamento mínimo necessário para novos usuários. **P2**
-4. **NF4:** **Escalabilidade:** O sistema deve ser escalável para acomodar um crescimento futuro no número de usuários e dados. **P2**
-5. **NF5:** **Compatibilidade:** O sistema deve ser compatível com os principais navegadores e dispositivos móveis. **P2**
+
+### Caso de Uso 5: Visualização de Logs
+**Descrição:** Um administrador deseja visualizar os logs de eventos para identificar erros ou ações dos usuários.
+
+**Pré-condições:** O usuário deve estar autenticado no sistema e ter permissões para acessar logs.
+
+**Fluxo Principal:**
+1. O usuário acessa a seção de logs no sistema.
+2. O sistema exibe uma lista de logs registrados, com filtros para nível de logging (informação, aviso, erro).
+3. O usuário aplica os filtros e visualiza os logs.
+4. O sistema exibe os logs conforme os filtros aplicados.
+
+**Fluxo Alternativo:**
+- Se não houver logs disponíveis para o período selecionado, o sistema exibe uma mensagem informando que nenhum log foi encontrado.
+```mermaid
+flowchart TD
+	A[Usuário acessa a seção de logs no sistema] --> B[Sistema exibe lista de logs com filtros]
+	B --> C[Usuário aplica os filtros]
+	C --> D[Sistema verifica logs disponíveis para o período selecionado]
+	D -->|Logs disponíveis| E[Sistema exibe logs conforme filtros aplicados]
+	D -->|Nenhum log encontrado| F[Sistema exibe mensagem informando ausência de logs]
+	E --> G[Fim do processo]
+	F --> G
+
+	classDef success fill:#3a6b5b,stroke:#000,stroke-width:2px;
+	classDef error fill:#b03a2e,stroke:#000,stroke-width:2px;
+
+	class E success;
+	class F error;
+```
+---
+## Internacionalização
+
+### Caso de Uso 6: Seleção de Idioma
+**Descrição:** Um usuário deseja selecionar um idioma para a interface do sistema.
+
+**Pré-condições:** O usuário deve estar autenticado no sistema.
+
+**Fluxo Principal:**
+1. O usuário acessa as configurações de idioma na página de perfil.
+2. O sistema exibe uma lista de idiomas disponíveis.
+3. O usuário seleciona o idioma desejado e confirma.
+4. O sistema aplica a seleção e atualiza a interface para o idioma escolhido.
+5. O sistema exibe uma mensagem de confirmação de que o idioma foi alterado com sucesso.
+
+**Fluxo Alternativo:**
+- Se o idioma selecionado não estiver disponível, o sistema exibe uma mensagem de erro e oferece opções para escolher outro idioma.
+```mermaid
+flowchart TD
+	A[Usuário acessa as configurações de idioma na página de perfil] --> B[Sistema exibe lista de idiomas disponíveis]
+	B --> C[Usuário seleciona o idioma desejado e confirma]
+	C --> D[Sistema valida o idioma selecionado]
+	D -->|Idioma disponível| E[Sistema aplica a seleção e atualiza a interface]
+	D -->|Idioma não disponível| F[Sistema exibe mensagem de erro e oferece opções para escolher outro idioma]
+	E --> G[Sistema exibe mensagem de confirmação de alteração]
+	F --> B
+
+	classDef success fill:#3a6b5b,stroke:#000,stroke-width:2px;
+	classDef error fill:#b03a2e,stroke:#000,stroke-width:2px;
+
+	class E,G success;
+	class F error;
+```
+---
+
+## Documentação do Código
+
+### Caso de Uso 7: Acesso à Documentação
+**Descrição:** Um desenvolvedor deseja acessar a documentação do código para entender como usar uma API.
+
+**Pré-condições:** O desenvolvedor deve ter acesso ao sistema e ao repositório de documentação.
+
+**Fluxo Principal:**
+1. O desenvolvedor acessa a seção de documentação no sistema.
+2. O sistema exibe a documentação organizada por funções, classes e métodos.
+3. O desenvolvedor navega até a seção da API desejada e visualiza exemplos de uso e descrições detalhadas.
+4. O desenvolvedor usa as informações para implementar funcionalidades baseadas na API.
+
+**Fluxo Alternativo:**
+- Se a documentação estiver desatualizada, o desenvolvedor pode enviar uma solicitação para atualizações e receber um aviso de que o conteúdo está sendo revisado.
+```mermaid
+flowchart TD
+	A[Usuário acessa as configurações de idioma na página de perfil] --> B[Sistema exibe lista de idiomas disponíveis]
+	B --> C[Usuário seleciona o idioma desejado e confirma]
+	C --> D[Sistema valida o idioma selecionado]
+	D -->|Idioma disponível| E[Sistema aplica a seleção e atualiza a interface]
+	D -->|Idioma não disponível| F[Sistema exibe mensagem de erro e oferece opções para escolher outro idioma]
+	E --> G[Sistema exibe mensagem de confirmação de alteração]
+	F --> B
+
+	classDef success fill:#a2f0a5,stroke:#000,stroke-width:2px;
+	classDef error fill#b03a2e,stroke:#000,stroke-width:2px;
+
+	class E,G success;
+	class F error;
+```
+—
+
+
+# Requisitos Não Funcionais
+
+## Interface Amigável e Intuitiva
+1.0 A interface deve ser fácil de usar e intuitiva para todos os usuários, independente do nível de conhecimento técnico. **(Crítico)**
+1.1 Treinamentos e tutoriais integrados para novos usuários. **(Importante)**
+
+## Responsividade
+1.0 A aplicação web deve funcionar perfeitamente em diferentes dispositivos (computadores, tablets, smartphones). **(Crítico)**
+
+## Segurança
+1.0 Implementar medidas de segurança para proteger os dados da aplicação, evitando acessos não autorizados e protegendo a aplicação contra ataques de hackers. **(Crítico)**
+1.1 Implementação de autenticação multifator (MFA) para acesso ao sistema. **(Importante)**
+1.2 Monitoramento contínuo de segurança com alertas de atividades suspeitas. **(Importante)**
+
+## Desempenho
+1.0 A aplicação deve ser rápida e eficiente, respondendo às solicitações do usuário com rapidez, mesmo com um grande volume de dados. **(Crítico)**
+1.1 Otimização de consultas ao banco de dados para garantir resposta rápida. **(Importante)**
+1.2 Testes de carga regulares para garantir a escalabilidade do sistema. **(Importante)**
+
+## Logging e Observabilidade
+1.0 O sistema deve implementar logging e observabilidade para monitoramento contínuo e resolução de problemas. **(Importante)**
+1.1 O sistema deve registrar eventos importantes, como erros, ações dos usuários e alterações nos dados, em um arquivo de log. **(Importante)**
+1.2 O sistema deve permitir a configuração de diferentes níveis de logging (informação, aviso, erro) para personalizar o nível de detalhe dos logs. **(Bom ter)**
+1.3 Os logs devem ser armazenados de forma segura e acessível para análise e resolução de problemas. **(Importante)**
+1.4 O sistema deve integrar ferramentas de observabilidade para monitoramento contínuo de desempenho e disponibilidade. **(Bom ter)**
+
+## Internacionalização
+1.0 O sistema deve suportar múltiplos idiomas para atender a uma base de usuários diversificada. **(Importante)**
+1.1 O sistema deve permitir a seleção de idioma pelo usuário no momento do login. **(Importante)**
+1.2 O sistema deve fornecer traduções para todas as interfaces e mensagens de usuário nos idiomas suportados. **(Importante)**
+1.3 O sistema deve permitir a adição de novos idiomas de forma modular, sem necessidade de grandes alterações no código. **(Bom ter)**
+
+## Documentação do Código
+1.0 O sistema deve manter uma documentação clara e detalhada do código e das APIs. **(Importante)**
+1.1 A documentação do código deve incluir comentários claros e explicativos para todas as funções, classes e métodos. **(Importante)**
+1.2 A documentação deve fornecer exemplos de uso para APIs e componentes principais do sistema. **(Importante)**
+1.3 A documentação deve incluir guias de instalação, configuração e uso da aplicação para desenvolvedores e usuários finais. **(Importante)**
+1.4 A documentação deve seguir um padrão consistente de formatação e organização, facilitando a leitura e a compreensão. **(Importante)**
+
+
+
+
 
 ### 📊 Métricas
 
-| Medida                | Estado Atual | Esperado | Resultados |
-|-----------------------|--------------|----------|------------|
-| Tempo de resposta     | 2 segundos   | <1 segundo |            |
-| Disponibilidade       | 95%          | 99.9%    |            |
-| Segurança             | N/A          | PCI DSS  |            |
-| Taxa de Erro          | 3%           | <1%      |            |
-| Feedback do Usuário   | N/A          | >90% de satisfação |            |
+| Medida            	| Esperado  | Resultados |
+|-----------------------------|---------------------|------------|
+| Internacionalização |	2 idiomas disponíveis	|	|
+| Tempo de Autenticação de Usuários	|	1s	|	|
+| Tempo de Carregamento das Páginas |	2s	|        	|
 
 ---
 
-## *Fora de Escopo*
+## Fora de escopo
 
-🚫 Não será abordado neste projeto a integração com sistemas ERP ou outros sistemas de gestão existentes na empresa.
+<aside> 🚫 **Este projeto não incluirá o desenvolvimento de módulos para gestão financeira ou integração com sistemas de terceiros.**
+Com a implementação do Sistema de Gestão de Manutenção (SGM), a empresa não apenas aprimorará suas operações internas, mas também abrirá oportunidades de monetização ao licenciar o software para outras empresas do setor, criando uma nova fonte de receita.
+</aside>
 
----
+## Dependências
 
-## *Dependências*
+<aside>
+- **Banco de Dados**: Um sistema de gerenciamento de banco de dados (SGBD) para armazenar dados de manutenção, equipamentos, usuários, etc. Exemplos: PostgreSQL, MySQL, SQL Server.
 
-⚠️ As seguintes dependências são necessárias para o desenvolvimento do SGM:
-
-1. **Ambiente de Desenvolvimento:** Configuração do ambiente de desenvolvimento com Next.js, Tailwind CSS, React e TypeScript.
-2. **Infraestrutura:** Provisionamento de servidores e banco de dados adequados para suportar a aplicação.
-3. **Segurança:** Implementação de medidas de segurança conforme os requisitos não funcionais.
-
-### Ferramentas de Desenvolvimento
-
-1. **Next.js**
-   - Framework React para construção de aplicações web otimizadas e server-side rendered.
-   - [Documentação Next.js](https://nextjs.org/docs)
-
-2. **Tailwind CSS**
-   - Framework de utilitários CSS para estilização rápida e eficiente.
-   - [Documentação Tailwind CSS](https://tailwindcss.com/docs)
-
-3. **React**
-   - Biblioteca JavaScript para construir interfaces de usuário.
-   - [Documentação React](https://reactjs.org/docs/getting-started.html)
-
-4. **TypeScript**
-   - Superset de JavaScript que adiciona tipagem estática ao código.
-   - [Documentação TypeScript](https://www.typescriptlang.org/docs/)
-
-5. **Serviços de Nuvem (opcional)**
-   - **AWS/Azure/GCP:** Para hospedagem, armazenamento e escalabilidade.
-   - **Documentação AWS/Azure/GCP**
-
----
-
-## *Plano de Lançamento*
-
-1. **Regras para lançamento interno:**
-    - [ ] Validação
-    - [ ] Divulgação
-    - [ ] Treinamento dos usuários
-    - [ ] Configuração do ambiente de produção
-
-2. **Lançamento Externo:**
-    - [ ] Marketing e Comunicação
-    - [ ] Suporte ao cliente
-    - [ ] Feedback inicial e ajustes
-
----
-
-## *Plano de Comunicação*
-
-💌 **Quando as comunicações acontecerão?**
-- **Lançamento Interno:** Comunicações semanais durante a fase de desenvolvimento, com atualizações e testes de validação.
-- **Lançamento Externo:** E-mails e notificações para todos os usuários finais e stakeholders no dia do lançamento.
-
-**Quem será notificado sobre esse novo recurso?**
-- **Usuários Internos:** Equipes de manutenção, gestores, e administradores.
-- **Usuários Externos:** Clientes, se aplicável, e parceiros de negócios.
-
-**Como será feita a comunicação?**
-- **E-mails:** Envio de e-mails informativos e instruções.
-- **Notificações no Aplicativo:** Atualizações e alertas dentro da aplicação.
-- **Reuniões e Workshops:** Sessões de treinamento e esclarecimento de dúvidas.
-
----
-
-Este PRD serve como guia para o desenvolvimento do Sistema de Gerenciamento de Manutenção, alinhando a equipe de desenvolvimento e os stakeholders com os objetivos, requisitos e expectativas do projeto.
+- **Servidores de Aplicação**: Infraestrutura para hospedar o software e garantir sua disponibilidade. 
+- **Frameworks e Bibliotecas**: Ferramentas e bibliotecas de desenvolvimento para construir o software. 
+- **Sistema de Autenticação e Autorização**: Para gerenciar o acesso dos usuários e suas permissões.
+- **Sistema de Monitoramento e Logs**: Para monitorar o desempenho do sistema e registrar eventos. 
+- **Documentação e Suporte**: Recursos para criar e manter a documentação do software e fornecer suporte aos usuários.
+- **Ambientes de Desenvolvimento e Teste**: Infraestrutura para desenvolvimento e testes do software.
+- **Licenciamento e Compliance**: Dependências relacionadas ao licenciamento de software e conformidade com regulamentos e normas.
+</aside>
