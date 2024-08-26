@@ -1,68 +1,86 @@
-import Footer from "@/components/footer";
-import Header from "@/components/header";
 import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
+import Link from "next/link";
+import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+import { IoExit } from "react-icons/io5";
+import { FaTachometerAlt, FaCogs, FaWrench, FaWarehouse, FaUsers } from "react-icons/fa";
 
-export default function Home() {
+export default function Dashboard() {
   return (
-    <div className="w-full min-h-screen flex flex-col bg-gradient-to-br from-pink-100 via-blue-100 to-green-100">
-      <Header />
-      <main className="flex-1 flex flex-col items-center justify-center py-8 px-4">
-        <div className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-          <Card className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow">
-            <CardHeader>
-              <CardTitle className="text-xl font-semibold text-blue-700">
-                Manutenções Pendentes
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-2xl text-gray-900">12</p>
-              <p className="text-gray-600">| Manutenções programadas</p>
-            </CardContent>
-          </Card>
+    <div className="w-full h-screen flex">
+      {/* Menu Lateral */}
+      <div className="w-64 h-full bg-gray-900 text-white flex flex-col items-center py-8">
+        <span className="text-lg mb-8">Vincenzo Amendola</span>
 
-          <Card className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow">
-            <CardHeader>
-              <CardTitle className="text-xl font-semibold text-green-700">
-                Manutenções Realizadas
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-2xl text-gray-900">45</p>
-              <p className="text-gray-600">| Concluídas no último mês</p>
-            </CardContent>
-          </Card>
+        <NavigationMenu className="flex flex-col w-full">
+          <NavigationMenuList className="flex flex-col space-y-4 w-full">
+            <NavigationMenuItem>
+              <Link href="/dashboard" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-gray-700 flex items-center justify-start pl-4`}
+                >
+                  <FaTachometerAlt className="mr-2" /> Dashboards
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/machines" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-gray-700 flex items-center justify-start pl-4`}
+                >
+                  <FaCogs className="mr-2" /> Máquinas
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/maintenance" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-gray-700 flex items-center justify-start pl-4`}
+                >
+                  <FaWrench className="mr-2" /> Manutenções
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/stock" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-gray-700 flex items-center justify-start pl-4`}
+                >
+                  <FaWarehouse className="mr-2" /> Estoque
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/teams" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-gray-700 flex items-center justify-start pl-4`}
+                >
+                  <FaUsers className="mr-2" /> Equipes
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
 
-          <Card className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow">
-            <CardHeader>
-              <CardTitle className="text-xl font-semibold text-indigo-700">
-                Máquinas
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-2xl text-gray-900">20</p>
-              <p className="text-gray-600">| Em operação</p>
-            </CardContent>
-          </Card>
+        <Link href="/" className="mt-auto mb-4">
+          <IoExit style={{ fontSize: "40px", color: "white" }} />
+        </Link>
+      </div>
 
-          <Card className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition-shadow">
-            <CardHeader>
-              <CardTitle className="text-xl font-semibold text-red-700">
-                Equipes de Manutenção
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-2xl text-gray-900">5</p>
-              <p className="text-gray-600">| Ativas</p>
-            </CardContent>
-          </Card>
+      {/* Conteúdo Principal */}
+      <div className="flex-1 p-8 bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-600">
+        <h1 className="text-white text-2xl text-center mb-4">Dashboard</h1>
+
+        {/* Conteúdo do Dashboard */}
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          {/* Coloque gráficos, estatísticas ou qualquer conteúdo desejado */}
+          <p>Bem-vindo ao Dashboard!</p>
         </div>
-      </main>
-      <Footer />
+      </div>
     </div>
   );
 }

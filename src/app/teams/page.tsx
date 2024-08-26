@@ -1,157 +1,133 @@
-import Footer from "@/components/footer";
-import Header from "@/components/header";
-
 import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
+import Link from "next/link";
+import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+import { IoExit } from "react-icons/io5";
+import { FaTachometerAlt, FaCogs, FaWrench, FaWarehouse, FaUsers } from "react-icons/fa";
 
-const teams = [
-  {
-    Name: "Equipe 1",
-    Collaborators: "3",
-    Specialty: "Mecânica",
-    Tasks: "2 tarefas",
-  },
-  {
-    Name: "Equipe 2",
-    Collaborators: "2",
-    Specialty: "Elétrica",
-    Tasks: "5 tarefas",
-  },
-  {
-    Name: "Equipe 3",
-    Collaborators: "4",
-    Specialty: "Hidráulica",
-    Tasks: "10 tarefas",
-  },
-  {
-    Name: "Equipe 4",
-    Collaborators: "3",
-    Specialty: "Pneumática",
-    Tasks: "7 tarefas",
-  },
-];
-
-export default function Home() {
+export default function Teams() {
   return (
-    <div className="w-full min-h-screen flex flex-col bg-background dark justify-center items-center gap-2">
-      <Header />
-      <h1 className="text-white mb-10">Equipes</h1>
-      <div className="w-full max-w-6xl flex flex-row gap-5 justify-end mr-40">
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button variant="default">Adicionar Equipe</Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[350px]">
-            <DialogHeader>
-              <DialogTitle>Detalhes</DialogTitle>
-            </DialogHeader>
-            <div className="flex flex-row gap-5 justify-center">
-              <div>
-                <Label>Nome da Equipe</Label>
-                <Input />
-                <Label>Colaboradores</Label>
-                <Input />
-                <Label>Especialidade</Label>
-                <Input />
-                <Label>Tarefas</Label>
-                <Input />
-              </div>
-            </div>
-            <DialogFooter>
-              <div className="flex gap-5">
-                <Button type="submit">Adicionar</Button>
-              </div>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-      </div>
-      <div className=" w-full flex justify-center mt-5 mb-5">
-        <div className="w-full max-w-6xl">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Nome da Equipe</TableHead>
-                <TableHead>Colaboradores</TableHead>
-                <TableHead>Especialidade</TableHead>
-                <TableHead>Tarefas</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {teams.map((team) => (
-                <TableRow key={team.Name}>
-                  <TableCell className="font-medium">
-                    {team.Name}
-                  </TableCell>
-                  <TableCell>{team.Collaborators}</TableCell>
-                  <TableCell>{team.Specialty}</TableCell>
-                  <TableCell>{team.Tasks}</TableCell>
-                  <TableCell>
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button variant="outline">Editar</Button>
-                      </DialogTrigger>
-                      <DialogContent className="sm:max-w-[350px]">
-                        <DialogHeader>
-                          <DialogTitle>Detalhes</DialogTitle>
-                        </DialogHeader>
-                        <div className="flex flex-row gap-5 justify-center">
-                          <div>
-                            <Label>Nome da máquina</Label>
-                            <Input placeholder={team.Name} />
-                            <Label>Tipo</Label>
-                            <Input placeholder={team.Collaborators} />
-                            <Label>Modelo</Label>
-                            <Input placeholder={team.Specialty} />
-                            <Label>Nome da máquina</Label>
-                            <Input placeholder={team.Tasks} />
-                          </div>
-                        </div>
+    <div className="w-full h-screen flex">
+      {/* Menu Lateral */}
+      <div className="w-64 h-full bg-gray-900 text-white flex flex-col items-center py-8">
+        <span className="text-lg mb-8">Vincenzo Amendola</span>
 
-                        <DialogFooter>
-                          <div className="flex gap-5">
-                            <Button type="submit">Excluir</Button>
-                            <Button type="submit">Salvar</Button>
-                          </div>
-                        </DialogFooter>
-                      </DialogContent>
-                    </Dialog>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+        <NavigationMenu className="flex flex-col w-full">
+          <NavigationMenuList className="flex flex-col space-y-4 w-full">
+            <NavigationMenuItem>
+              <Link href="/dashboard" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-gray-700 flex items-center justify-start pl-4`}
+                >
+                  <FaTachometerAlt className="mr-2" /> Dashboards
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/machines" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-gray-700 flex items-center justify-start pl-4`}
+                >
+                  <FaCogs className="mr-2" /> Máquinas
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/maintenance" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-gray-700 flex items-center justify-start pl-4`}
+                >
+                  <FaWrench className="mr-2" /> Manutenções
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/stock" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-gray-700 flex items-center justify-start pl-4`}
+                >
+                  <FaWarehouse className="mr-2" /> Estoque
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/teams" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-gray-700 flex items-center justify-start pl-4`}
+                >
+                  <FaUsers className="mr-2" /> Equipes
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+
+        <Link href="/" className="mt-auto mb-4">
+          <IoExit style={{ fontSize: "40px", color: "white" }} />
+        </Link>
+      </div>
+
+      {/* Conteúdo Principal */}
+      <div className="flex-1 p-8 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600">
+        <h1 className="text-white text-2xl text-center mb-4">Equipes</h1>
+
+        {/* Tabela de Equipes */}
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-lg">
+            <thead>
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Equipe
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Líder
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Integrantes
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Status
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  Equipe A
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  João Silva
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  5
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  Ativa
+                </td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  Equipe B
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  Maria Souza
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  4
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  Inativa
+                </td>
+              </tr>
+              {/* Adicione mais linhas conforme necessário */}
+            </tbody>
+          </table>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }

@@ -19,7 +19,6 @@ import {
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -38,7 +37,25 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-const stock = [
+// Declaração das interfaces para os itens de estoque e movimentos
+interface StockItem {
+  Part_name: string;
+  Code: string;
+  Supplier: string;
+  Quantity: string;
+  Unit_value: string;
+}
+
+interface Movement {
+  Part_name: string;
+  Code: string;
+  Type: string;
+  Data: string;
+  Quantity: string;
+}
+
+// Dados de exemplo para o estoque e movimentos
+const stock: StockItem[] = [
   {
     Part_name: "Parafuso Supimpa 3000",
     Code: "890",
@@ -76,43 +93,43 @@ const stock = [
   },
 ];
 
-const movements = [
-    {
-      Part_name: "Parafuso Supimpa 3000",
-      Code: "890",
-      Type: "Saída",
-      Data: "11/09/2004",
-      Quantity: "2",
-    },
-    {
-      Part_name: "Parafuso Supimpa 3000",
-      Code: "890",
-      Type: "Saída",
-      Data: "11/09/2004",
-      Quantity: "2",
-    },
-    {
-      Part_name: "Parafuso Supimpa 3000",
-      Code: "890",
-      Type: "Saída",
-      Data: "11/09/2004",
-      Quantity: "2",
-    },
-    {
-      Part_name: "Parafuso Supimpa 3000",
-      Code: "890",
-      Type: "Saída",
-      Data: "11/09/2004",
-      Quantity: "2",
-    },
-    {
-      Part_name: "Parafuso Supimpa 3000",
-      Code: "890",
-      Type: "Saída",
-      Data: "11/09/2004",
-      Quantity: "2",
-    },
-  ];
+const movements: Movement[] = [
+  {
+    Part_name: "Parafuso Supimpa 3000",
+    Code: "890",
+    Type: "Saída",
+    Data: "11/09/2004",
+    Quantity: "2",
+  },
+  {
+    Part_name: "Parafuso Supimpa 3000",
+    Code: "890",
+    Type: "Saída",
+    Data: "11/09/2004",
+    Quantity: "2",
+  },
+  {
+    Part_name: "Parafuso Supimpa 3000",
+    Code: "890",
+    Type: "Saída",
+    Data: "11/09/2004",
+    Quantity: "2",
+  },
+  {
+    Part_name: "Parafuso Supimpa 3000",
+    Code: "890",
+    Type: "Saída",
+    Data: "11/09/2004",
+    Quantity: "2",
+  },
+  {
+    Part_name: "Parafuso Supimpa 3000",
+    Code: "890",
+    Type: "Saída",
+    Data: "11/09/2004",
+    Quantity: "2",
+  },
+];
 
 export default function Home() {
   return (
@@ -215,7 +232,7 @@ export default function Home() {
               <TableRow>
                 <TableHead>Nome da Peça</TableHead>
                 <TableHead>Código da Peça</TableHead>
-                <TableHead>Responsável</TableHead>
+                <TableHead>Fornecedor</TableHead>
                 <TableHead>Quantidade</TableHead>
                 <TableHead>Valor Unitário</TableHead>
               </TableRow>
@@ -258,14 +275,14 @@ export default function Home() {
             <TableRow>
                 <TableHead>Nome da Peça</TableHead>
                 <TableHead>Código da Peça</TableHead>
-                <TableHead>Tipo</TableHead>
+                <TableHead>Tipo de Movimentação</TableHead>
                 <TableHead>Data</TableHead>
                 <TableHead>Quantidade</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {movements.map((movement) => (
-                <TableRow key={movement.Part_name}>
+                <TableRow key={movement.Code}>
                   <TableCell className="font-medium">{movement.Part_name}</TableCell>
                   <TableCell>{movement.Code}</TableCell>
                   <TableCell>{movement.Type}</TableCell>

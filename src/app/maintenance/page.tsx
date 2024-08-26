@@ -1,188 +1,142 @@
-import Footer from "@/components/footer";
-import Header from "@/components/header";
-
 import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
+import Link from "next/link";
+import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
+import { IoExit } from "react-icons/io5";
+import { FaTachometerAlt, FaCogs, FaWrench, FaWarehouse, FaUsers } from "react-icons/fa";
 
-const maintenances = [
-  {
-    Machine: "Machine Name",
-    Type: "Preventiva",
-    Responsible: "Equipe 2",
-    Used_parts: "Peça 4",
-    Description: "Substituição de peça",
-    Data: "29/09/2020",
-  },
-  {
-    Machine: "Machine Name",
-    Type: "Preventiva",
-    Responsible: "Equipe 4",
-    Used_parts: "Peça 2",
-    Description: "Substituição de peça",
-    Data: "29/09/2020",
-  },
-  {
-    Machine: "Machine Name",
-    Type: "Preventiva",
-    Responsible: "Equipe 3",
-    Used_parts: "Peça 9",
-    Description: "Substituição de peça",
-    Data: "29/09/2020",
-  },
-  {
-    Machine: "Machine Name",
-    Type: "Preventiva",
-    Responsible: "Equipe 5",
-    Used_parts: "Peça 67",
-    Description: "Substituição de peça",
-    Data: "29/09/2020",
-  },
-  {
-    Machine: "Machine Name",
-    Type: "Preventiva",
-    Responsible: "Equipe 7",
-    Used_parts: "Peça 1",
-    Description: "Substituição de peça",
-    Data: "29/09/2020",
-  },
-];
-
-export default function Home() {
+export default function Header() {
   return (
-    <div className="w-full min-h-screen flex flex-col bg-background dark justify-center items-center gap-2">
-      <Header />
-      <h1 className="text-white mb-10">Manutenções</h1>
-      <div className="w-full max-w-6xl flex flex-row gap-5 justify-end mr-40">
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button variant="default">Adicionar</Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[600px]">
-            <DialogHeader>
-              <DialogTitle>Detalhes</DialogTitle>
-            </DialogHeader>
-            <div className="flex flex-row gap-5 justify-center">
-              <div>
-                <Label>Máquina</Label>
-                <Input />
-                <Label>Tipo</Label>
-                <Input />
-                <Label>Responsável</Label>
-                <Input />
-              </div>
-              <div>
-                <Label>Peças Usadas</Label>
-                <Input />
-                <Label>Descrição</Label>
-                <Input />
-                <Label>Data</Label>
-                <Input />
-              </div>
-            </div>
-            <DialogFooter>
-              <div className="flex gap-5">
-                <Button type="submit">Concluir</Button>
-              </div>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-        <Select>
-          <SelectTrigger className="w-[180px] text-white">
-            <SelectValue placeholder="Filtrar" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectLabel>Filtros</SelectLabel>
-              <SelectItem value="maquinas">Máquinas</SelectItem>
-              <SelectItem value="tipo">Tipo</SelectItem>
-              <SelectItem value="responsavel">Responsável</SelectItem>
-              <SelectItem value="peças">Peças Usadas</SelectItem>
-              <SelectItem value="descriçao">Descrição</SelectItem>
-              <SelectItem value="data">Data</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+    <div className="w-full h-screen flex">
+      {/* Menu Lateral */}
+      <div className="w-64 h-full bg-gray-900 text-white flex flex-col items-center py-8">
+        <span className="text-lg mb-8">Vincenzo Amendola</span>
+        
+        <NavigationMenu className="flex flex-col w-full">
+          <NavigationMenuList className="flex flex-col space-y-4 w-full">
+            <NavigationMenuItem>
+              <Link href="/dashboard" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-gray-700 flex items-center justify-start pl-4`}
+                >
+                  <FaTachometerAlt className="mr-2" /> Dashboards
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/machines" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-gray-700 flex items-center justify-start pl-4`}
+                >
+                  <FaCogs className="mr-2" /> Máquinas
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/maintenance" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-gray-700 flex items-center justify-start pl-4`}
+                >
+                  <FaWrench className="mr-2" /> Manutenções
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/stock" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-gray-700 flex items-center justify-start pl-4`}
+                >
+                  <FaWarehouse className="mr-2" /> Estoque
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/teams" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={`${navigationMenuTriggerStyle()} bg-gray-700 flex items-center justify-start pl-4`}
+                >
+                  <FaUsers className="mr-2" /> Equipes
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+        
+        <Link href="/" className="mt-auto mb-4">
+          <IoExit style={{ fontSize: "40px", color: "white" }} />
+        </Link>
       </div>
-      <div className=" w-full flex justify-center mt-5 mb-5">
-        <div className="w-full max-w-6xl">
-          <Table>
-            <TableCaption>Lista de Manutenções.</TableCaption>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Máquina</TableHead>
-                <TableHead>Tipo</TableHead>
-                <TableHead>Responsável</TableHead>
-                <TableHead>Peças usadas</TableHead>
-                <TableHead>Descrição</TableHead>
-                <TableHead>Data</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {maintenances.map((maintenance) => (
-                <TableRow key={maintenance.Type}>
-                  <TableCell className="font-medium">
-                    {maintenance.Machine}
-                  </TableCell>
-                  <TableCell>{maintenance.Type}</TableCell>
-                  <TableCell>{maintenance.Responsible}</TableCell>
-                  <TableCell>{maintenance.Used_parts}</TableCell>
-                  <TableCell>{maintenance.Description}</TableCell>
-                  <TableCell>{maintenance.Data}</TableCell>
-                  <TableCell>
-                    <Select>
-                      <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Status" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectGroup>
-                          <SelectLabel>Status</SelectLabel>
-                          <SelectItem value="apple">Agendada</SelectItem>
-                          <SelectItem value="banana">Em Prograsso</SelectItem>
-                          <SelectItem value="blueberry">Concluída</SelectItem>
-                          <SelectItem value="grapes">Cancelada</SelectItem>
-                          <SelectItem value="pineapple">
-                            Aguardando Peças
-                          </SelectItem>
-                        </SelectGroup>
-                      </SelectContent>
-                    </Select>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+
+      {/* Conteúdo Principal */}
+      <div className="flex-1 p-8 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600">
+        <h1 className="text-white text-2xl text-center mb-4">Manutenções</h1>
+        
+        {/* Tabela de Manutenções */}
+        <div className="overflow-x-auto">
+          <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-lg">
+            <thead>
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Máquina
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Data
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Tipo de Manutenção
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Status
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Responsável
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  Máquina A
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  24/08/2024
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  Preventiva
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  Concluída
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  João Silva
+                </td>
+              </tr>
+              <tr>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  Máquina B
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  25/08/2024
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  Corretiva
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  Em Andamento
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  Maria Souza
+                </td>
+              </tr>
+              {/* Adicione mais linhas conforme necessário */}
+            </tbody>
+          </table>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }

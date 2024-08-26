@@ -3,121 +3,79 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-} from "@/components/ui/navigation-menu";
+} from "@/components/ui/navigation-menu"; 
 import Link from "next/link";
-import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-
 import { IoExit } from "react-icons/io5";
+import { FaTachometerAlt, FaCogs, FaWrench, FaWarehouse, FaUsers } from "react-icons/fa";
 
 export default function Header() {
   return (
-    <div className="w-full h-32 flex flex-col justify-center items-center">
-      <div className="w-full h-15 flex flex-row bg-gray-300 items-center">
-        <Avatar className="m-2">
-          <AvatarImage src="https://github.com/shadcn.png" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="ghost" className="text-lg">
-              Bem Vindo Pagézinho
-            </Button>
-          </SheetTrigger>
-          <SheetContent>
-            <SheetHeader>
-              <SheetTitle>Editar perfil</SheetTitle>
-              <SheetDescription>
-                Faça as alterações do seu perfil aqui. Clique em salvar para finalizar.
-              </SheetDescription>
-            </SheetHeader>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label className="text-right">
-                  Nome
-                </Label>
-                <Input id="name" value="Pagézinho" className="col-span-3" />
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label className="text-right">
-                  Email
-                </Label>
-                <Input id="username" value="page123@gmail.com" className="col-span-3" />
-              </div>
-            </div>
-            <SheetFooter>
-              <SheetClose asChild>
-                <Button type="submit">Salvar</Button>
-              </SheetClose> 
-            </SheetFooter>
-          </SheetContent>
-        </Sheet>
-        <Link href="/" className="ml-auto mr-2">
+    <div className="w-full h-screen flex">
+      {/* Menu Lateral */}
+      <div className="w-64 h-full bg-gray-300 flex flex-col items-center py-8">
+        <span className="text-lg mb-8">Vincenzo Amendola</span>
+
+        <NavigationMenu className="flex flex-col w-full">
+          <NavigationMenuList className="flex flex-col space-y-4 w-full">
+            <NavigationMenuItem>
+              <Link href="/dashboard" passHref>
+                <NavigationMenuLink
+                  className="bg-slate-400 flex items-center justify-start pl-4"
+                >
+                  <FaTachometerAlt className="mr-2" /> Dashboards
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/machines" passHref>
+                <NavigationMenuLink
+                  className="bg-slate-400 flex items-center justify-start pl-4"
+                >
+                  <FaCogs className="mr-2" /> Máquinas
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/maintenance" passHref>
+                <NavigationMenuLink
+                  className="bg-slate-400 flex items-center justify-start pl-4"
+                >
+                  <FaWrench className="mr-2" /> Manutenções
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/stock" passHref>
+                <NavigationMenuLink
+                  className="bg-slate-400 flex items-center justify-start pl-4"
+                >
+                  <FaWarehouse className="mr-2" /> Estoque
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/teams" passHref>
+                <NavigationMenuLink
+                  className="bg-slate-400 flex items-center justify-start pl-4"
+                >
+                  <FaUsers className="mr-2" /> Equipes
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+
+        <Link href="/" className="mt-auto mb-4">
           <IoExit style={{ fontSize: "40px" }} />
         </Link>
       </div>
-      <NavigationMenu>
-        <NavigationMenuList className="flex space-x-5">
-          <NavigationMenuItem>
-            <Link href="/dashboard" legacyBehavior passHref>
-              <NavigationMenuLink
-                className={`${navigationMenuTriggerStyle()} bg-slate-400`}
-              >
-                Dashboards
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/machines" legacyBehavior passHref>
-              <NavigationMenuLink
-                className={`${navigationMenuTriggerStyle()} bg-slate-400`}
-              >
-                Máquinas
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/maintenance" legacyBehavior passHref>
-              <NavigationMenuLink
-                className={`${navigationMenuTriggerStyle()} bg-slate-400`}
-              >
-                Manutenções
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/stock" legacyBehavior passHref>
-              <NavigationMenuLink
-                className={`${navigationMenuTriggerStyle()} bg-slate-400`}
-              >
-                Estoque
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link href="/teams" legacyBehavior passHref>
-              <NavigationMenuLink
-                className={`${navigationMenuTriggerStyle()} bg-slate-400`}
-              >
-                Equipes
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
+
+      {/* Conteúdo Principal */}
+      <div className="flex-1 p-8">
+        {/* Aqui vai o conteúdo principal da página */}
+        <h1 className="text-2xl text-center mb-4">Manutenções</h1>
+        {/* Conteúdo adicional aqui */}
+      </div>
     </div>
   );
 }
