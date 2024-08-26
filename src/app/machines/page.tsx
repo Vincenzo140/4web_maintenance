@@ -1,3 +1,5 @@
+"use client";
+
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -8,8 +10,37 @@ import Link from "next/link";
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { IoExit } from "react-icons/io5";
 import { FaTachometerAlt, FaCogs, FaWrench, FaWarehouse, FaUsers } from "react-icons/fa";
+import { useState } from "react";
 
 export default function Machines() {
+  // Estado para os dados da tabela
+  const [machines, setMachines] = useState([
+    { name: 'Máquina A', model: 'Modelo X', status: 'Operacional', location: 'Setor A', responsible: 'João Silva' },
+    { name: 'Máquina B', model: 'Modelo Y', status: 'Manutenção', location: 'Setor B', responsible: 'Maria Souza' }
+  ]);
+
+  // Estado para os dados do formulário
+  const [formData, setFormData] = useState({
+    name: '',
+    model: '',
+    status: '',
+    location: '',
+    responsible: ''
+  });
+
+  // Função para atualizar os dados do formulário
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Função para adicionar uma nova máquina
+  const handleAddMachine = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setMachines([...machines, formData]);
+    setFormData({ name: '', model: '', status: '', location: '', responsible: '' });
+  };
+
   return (
     <div className="w-full h-screen flex">
       {/* Menu Lateral */}
@@ -76,7 +107,7 @@ export default function Machines() {
         <h1 className="text-white text-2xl text-center mb-4">Máquinas</h1>
 
         {/* Tabela de Máquinas */}
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto mb-8">
           <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-lg">
             <thead>
               <tr>
@@ -98,43 +129,87 @@ export default function Machines() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  Máquina A
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  Modelo X
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  Operacional
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  Setor A
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  João Silva
-                </td>
-              </tr>
-              <tr>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  Máquina B
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  Modelo Y
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  Manutenção
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  Setor B
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  Maria Souza
-                </td>
-              </tr>
-              {/* Adicione mais linhas conforme necessário */}
+              {machines.map((machine, index) => (
+                <tr key={index}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {machine.name}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {machine.model}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {machine.status}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {machine.location}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {machine.responsible}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Formulário para Adicionar Máquina */}
+        <div className="bg-white p-6 rounded-lg shadow-lg">
+          <h2 className="text-xl font-semibold mb-4">Adicionar Máquina</h2>
+          <form onSubmit={handleAddMachine}>
+            <div className="grid grid-cols-1 gap-4 mb-4">
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                placeholder="Máquina"
+                className="p-2 border border-gray-300 rounded"
+                required
+              />
+              <input
+                type="text"
+                name="model"
+                value={formData.model}
+                onChange={handleInputChange}
+                placeholder="Modelo"
+                className="p-2 border border-gray-300 rounded"
+                required
+              />
+              <input
+                type="text"
+                name="status"
+                value={formData.status}
+                onChange={handleInputChange}
+                placeholder="Status"
+                className="p-2 border border-gray-300 rounded"
+                required
+              />
+              <input
+                type="text"
+                name="location"
+                value={formData.location}
+                onChange={handleInputChange}
+                placeholder="Localização"
+                className="p-2 border border-gray-300 rounded"
+                required
+              />
+              <input
+                type="text"
+                name="responsible"
+                value={formData.responsible}
+                onChange={handleInputChange}
+                placeholder="Responsável"
+                className="p-2 border border-gray-300 rounded"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="bg-green-600 text-white p-2 rounded hover:bg-green-700"
+            >
+              Adicionar
+            </button>
+          </form>
         </div>
       </div>
     </div>
