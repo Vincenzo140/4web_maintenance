@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: .
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    environment:
+      - DJANGO_SETTINGS_MODULE=maintenance.settings
+    # depends_on:
+    #   - db
+    command: ["gunicorn", "--bind", "0.0.0.0:8000", "maintenance.wsgi:application"]
+
+  # db:
+  #   image: postgres:13
+  #   restart: always
+  #   environment:
+  #     POSTGRES_DB: your_database_name
+  #     POSTGRES_USER: your_database_user
+  #     POSTGRES_PASSWORD: your_database_password
+  #   volumes:
+#   #     - db-data:/var/lib/postgresql/data
+
+# volumes:
+#   db-data:
